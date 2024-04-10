@@ -10,3 +10,10 @@
   font-weight: bold;
   margin: 0 10px 0 10px;
 }
+
+table {
+  border-spacing: 10px;
+}
+th, td {
+  padding: 10px;
+}
