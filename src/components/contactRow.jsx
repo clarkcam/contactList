@@ -1,15 +1,15 @@
 
-export function ContactRow({status, contact, selectedId, setSelectedId}) {
-    function clickHandler(id){
+export default function ContactRow({contact, selectedId, setSelectedId}) {
+    
+    let className = 'contactRow';
 
-        setSelectedId(id);
-        console.log("selected", selectedId);
+    if(selectedId){
+        className = className + ' selected';
     }
-    let className = "contact " + status;
    
     return (
         
-        <tr className={className} id={contact.id} onClick={(e) => {clickHandler(contact.id)}}>
+        <tr className={className} id={contact.id} onClick={() => {setSelectedId(contact.id)}}>
             <td>{contact.name}</td>
             <td>{contact.email}</td>
             <td>{contact.phone}</td>

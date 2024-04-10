@@ -1,4 +1,4 @@
-import { ContactRow } from "./contactRow"
+import ContactRow from "./contactRow"
 import { useState, useEffect } from "react";
 
 
@@ -10,9 +10,9 @@ const dummyContacts = [
 
 
 
-export function ContactList({selectedId, setSelectedId}) {
+export default function ContactList({selectedId, setSelectedId}) {
     const [contacts, SetContacts] = useState(dummyContacts);
-    console.log(contacts);
+    
 
     useEffect(() => {
         async function fetchContacts() {
@@ -27,20 +27,6 @@ export function ContactList({selectedId, setSelectedId}) {
         }
         fetchContacts()
     }, []);
-
-    function RenderContacts({contact, selectedId, setSelectedId}) {
-                
-        if(selectedId){
-            if(selectedId === contact.id){
-                return <ContactRow status="selected" key={contact.id} contact={contact} setSelectedId={setSelectedId}/>;
-            } 
-            else {
-                return;
-            }
-        }
-        return <ContactRow status="" contact={contact} selectedId={selectedId} setSelectedId={setSelectedId}/>;
-    }
-    
 
     return (
         <div>
@@ -58,14 +44,14 @@ export function ContactList({selectedId, setSelectedId}) {
                 </tr>
                  {
                     contacts.map((contact) => {
-                        return <RenderContacts key={contact.id} contact={contact} selectedId={selectedId} setSelectedId={setSelectedId}/>;
+                        return <ContactRow key={contact.id} contact={contact} selectedId={selectedId} setSelectedId={setSelectedId}/>;
                     })
                 }
                
             </tbody>
             
         </table>
-        <button onClick={(e) => {setSelectedId(0)}}>Reset view</button>
+        <button onClick={(e) => {setSelectedId(null)}}>Reset view</button>
         </div>
     );
 }
